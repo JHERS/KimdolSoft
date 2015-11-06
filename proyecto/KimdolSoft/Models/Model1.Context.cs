@@ -25,10 +25,14 @@ namespace KimdolSoft.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<abono> abono { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<cliente> cliente { get; set; }
         public virtual DbSet<compra> compra { get; set; }
-        public virtual DbSet<contacto> contacto { get; set; }
-        public virtual DbSet<cuentausuario> cuentausuario { get; set; }
         public virtual DbSet<detallecompra> detallecompra { get; set; }
         public virtual DbSet<detalledevolucion> detalledevolucion { get; set; }
         public virtual DbSet<detallemovimiento> detallemovimiento { get; set; }

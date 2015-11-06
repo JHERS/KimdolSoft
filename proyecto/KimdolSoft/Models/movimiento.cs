@@ -17,6 +17,7 @@ namespace KimdolSoft.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public movimiento()
         {
+            this.abono = new HashSet<abono>();
             this.detallemovimiento = new HashSet<detallemovimiento>();
         }
     
@@ -24,12 +25,14 @@ namespace KimdolSoft.Models
         public System.DateTime fechaVenta { get; set; }
         public Nullable<System.DateTime> fechaEntrega { get; set; }
         public Nullable<int> descuento { get; set; }
-        public string idCliente { get; set; }
+        public Nullable<int> idCliente { get; set; }
         public string idEmpleado { get; set; }
-        public short idTipoMovimiento { get; set; }
+        public int idTipoMovimiento { get; set; }
         public int valorTotal { get; set; }
         public string estado { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<abono> abono { get; set; }
         public virtual cliente cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detallemovimiento> detallemovimiento { get; set; }

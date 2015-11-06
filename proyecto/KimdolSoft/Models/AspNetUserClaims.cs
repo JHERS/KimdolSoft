@@ -12,16 +12,13 @@ namespace KimdolSoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class detalledevolucion
+    public partial class AspNetUserClaims
     {
-        public int idDetalle { get; set; }
-        public int idProducto { get; set; }
-        public int idDevolucion { get; set; }
-        public string descripcion { get; set; }
-        public int cantidadADevolver { get; set; }
-        public int cantidadPendiente { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        public virtual devolucion devolucion { get; set; }
-        public virtual producto producto { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

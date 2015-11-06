@@ -21,7 +21,7 @@ namespace KimdolSoft.Controllers
         }
 
         // GET: clientes/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -46,7 +46,7 @@ namespace KimdolSoft.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCliente,tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,telefono,celular,email,direccion,estado")] cliente cliente)
+        public ActionResult Create([Bind(Include = "primerNombre,segundoNombre,primerApellido,segundoApellido,telefono,celular,email,direccion,barrio,estado")] cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace KimdolSoft.Controllers
         }
 
         // GET: clientes/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -78,7 +78,7 @@ namespace KimdolSoft.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCliente,tipoDocumento,primerNombre,segundoNombre,primerApellido,segundoApellido,telefono,celular,email,direccion,estado")] cliente cliente)
+        public ActionResult Edit([Bind(Include = "primerNombre,segundoNombre,primerApellido,segundoApellido,telefono,celular,email,direccion,barrio,estado")] cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace KimdolSoft.Controllers
         }
 
         // GET: clientes/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -107,7 +107,7 @@ namespace KimdolSoft.Controllers
         // POST: clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             cliente cliente = db.cliente.Find(id);
             db.cliente.Remove(cliente);

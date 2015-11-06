@@ -17,7 +17,7 @@ namespace KimdolSoft.Models
         public int idDetalle { get; set; }
         public int idProducto { get; set; }
         public int idCompra { get; set; }
-        public short cantidad { get; set; }
+        public int cantidad { get; set; }
         public int valorUnitario { get; set; }
     
         public virtual compra compra { get; set; }

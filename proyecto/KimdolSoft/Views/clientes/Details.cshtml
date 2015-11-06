@@ -17,88 +17,103 @@
         <div class="panel-body">
             <div>
 
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.tipoDocumento)
-                    </dt>
+                <table data-toggle="table"
+                       data-query-params="queryParams"
+                       class="table table-hover">
+                    <thead>
+                        <tr class="active">
+                            <th>
+                                Documento
+                            </th>
+                            <th>
+                                Tipo Documento
+                            </th>
+                            <th>
+                                Primer Nombre
+                            </th>
+                            <th>
+                                Segundo nombre
+                            </th>
+                            <th>
+                                Primer Apellido
+                            </th>
+                            <th>
+                                Segundo Apellido
+                            </th>
+                            <th>
+                                Telefono
+                            </th>
+                            <th>
+                                Celular
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Dirección
+                            </th>
+                            <th>
+                                Barrio
+                            </th>
+                            <th>
+                                Estado
+                            </th>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.tipoDocumento)
-                    </dd>
+                        </tr>
+                    </thead>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.primerNombre)
-                    </dt>
+                    <tr>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.primerNombre)
-                    </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.idCliente)
+                        </td>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.segundoNombre)
-                    </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.tipoDocumento)
+                        </td>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.segundoNombre)
-                    </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.primerNombre)
+                        </td>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.primerApellido)
-                    </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.segundoNombre)
+                        </td>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.primerApellido)
-                    </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.primerApellido)
+                        </td>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.segundoApellido)
-                    </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.segundoApellido)
+                        </td>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.segundoApellido)
-                    </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.telefono)
+                        </td>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.telefono)
-                    </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.celular)
+                        </td>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.telefono)
-                    </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.email)
+                        </td>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.celular)
-                    </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.direccion)
+                        </td>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.celular)
-                    </dd>
+                        <td>
+                            @Html.DisplayFor(model => model.barrio)
+                        </td>
 
-                    <dt>
-                        @Html.DisplayNameFor(model => model.email)
-                    </dt>
+                        <td>
+                            @Html.DisplayFor(model => model.estado)
+                        </td>
 
-                    <dd>
-                        @Html.DisplayFor(model => model.email)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.direccion)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.direccion)
-                    </dd>
-
-                    <dt>
-                        @Html.DisplayNameFor(model => model.estado)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.estado)
-                    </dd>
-
-                </dl>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>

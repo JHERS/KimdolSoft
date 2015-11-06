@@ -20,8 +20,7 @@ namespace KimdolSoft.Models
             this.movimiento = new HashSet<movimiento>();
         }
     
-        public string idCliente { get; set; }
-        public string tipoDocumento { get; set; }
+        public int idCliente { get; set; }
         public string primerNombre { get; set; }
         public string segundoNombre { get; set; }
         public string primerApellido { get; set; }
@@ -30,6 +29,7 @@ namespace KimdolSoft.Models
         public string celular { get; set; }
         public string email { get; set; }
         public string direccion { get; set; }
+        public string barrio { get; set; }
         public string estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

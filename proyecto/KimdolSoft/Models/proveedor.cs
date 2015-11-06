@@ -18,7 +18,6 @@ namespace KimdolSoft.Models
         public proveedor()
         {
             this.compra = new HashSet<compra>();
-            this.contacto = new HashSet<contacto>();
             this.devolucion = new HashSet<devolucion>();
         }
     
@@ -28,12 +27,13 @@ namespace KimdolSoft.Models
         public string direccionEmpresa { get; set; }
         public string emailEmpresa { get; set; }
         public string telefonoEmpresa { get; set; }
+        public string nombreVendedor { get; set; }
+        public string apellidoVendedor { get; set; }
+        public string telefonoVendedor { get; set; }
         public string estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<compra> compra { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<contacto> contacto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<devolucion> devolucion { get; set; }
     }
