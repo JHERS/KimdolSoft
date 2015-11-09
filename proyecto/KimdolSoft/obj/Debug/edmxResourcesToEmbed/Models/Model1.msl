@@ -1,11 +1,75 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="kimdolsoftModelStoreContainer" CdmEntityContainer="kimdolsoftEntities">
+  <EntityContainerMapping StorageEntityContainer="kimdolsoftModelStoreContainer" CdmEntityContainer="kimdolsoftEntities2">
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="kimdolsoftModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="abono">
+      <EntityTypeMapping TypeName="kimdolsoftModel.abono">
+        <MappingFragment StoreEntitySet="abono">
+          <ScalarProperty Name="idAbono" ColumnName="idAbono" />
+          <ScalarProperty Name="idMovimiento" ColumnName="idMovimiento" />
+          <ScalarProperty Name="valorAbono" ColumnName="valorAbono" />
+          <ScalarProperty Name="restante" ColumnName="restante" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="kimdolsoftModel.AspNetRoles">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="kimdolsoftModel.AspNetUserClaims">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="kimdolsoftModel.AspNetUserLogins">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="kimdolsoftModel.AspNetUsers">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="cliente">
       <EntityTypeMapping TypeName="kimdolsoftModel.cliente">
         <MappingFragment StoreEntitySet="cliente">
           <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-          <ScalarProperty Name="tipoDocumento" ColumnName="tipoDocumento" />
           <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
           <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
           <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
@@ -14,6 +78,7 @@
           <ScalarProperty Name="celular" ColumnName="celular" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="barrio" ColumnName="barrio" />
           <ScalarProperty Name="estado" ColumnName="estado" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -27,33 +92,6 @@
           <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
           <ScalarProperty Name="valorCompra" ColumnName="valorCompra" />
           <ScalarProperty Name="estado" ColumnName="estado" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="contacto">
-      <EntityTypeMapping TypeName="kimdolsoftModel.contacto">
-        <MappingFragment StoreEntitySet="contacto">
-          <ScalarProperty Name="idContacto" ColumnName="idContacto" />
-          <ScalarProperty Name="tipoDocumento" ColumnName="tipoDocumento" />
-          <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
-          <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
-          <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
-          <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
-          <ScalarProperty Name="celular" ColumnName="celular" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="cuentausuario">
-      <EntityTypeMapping TypeName="kimdolsoftModel.cuentausuario">
-        <MappingFragment StoreEntitySet="cuentausuario">
-          <ScalarProperty Name="idCuentaUsuario" ColumnName="idCuentaUsuario" />
-          <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
-          <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-          <ScalarProperty Name="preguntaSeguridad" ColumnName="preguntaSeguridad" />
-          <ScalarProperty Name="respuestaSeguridad" ColumnName="respuestaSeguridad" />
-          <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -187,6 +225,9 @@
           <ScalarProperty Name="direccionEmpresa" ColumnName="direccionEmpresa" />
           <ScalarProperty Name="emailEmpresa" ColumnName="emailEmpresa" />
           <ScalarProperty Name="telefonoEmpresa" ColumnName="telefonoEmpresa" />
+          <ScalarProperty Name="nombreVendedor" ColumnName="nombreVendedor" />
+          <ScalarProperty Name="apellidoVendedor" ColumnName="apellidoVendedor" />
+          <ScalarProperty Name="telefonoVendedor" ColumnName="telefonoVendedor" />
           <ScalarProperty Name="estado" ColumnName="estado" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -229,5 +270,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="kimdolsoftModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetRoles">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="AspNetUsers">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -12,16 +12,13 @@ namespace KimdolSoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class detalledevolucion
+    public partial class abono
     {
-        public int idDetalle { get; set; }
-        public int idProducto { get; set; }
-        public int idDevolucion { get; set; }
-        public string descripcion { get; set; }
-        public int cantidadADevolver { get; set; }
-        public int cantidadPendiente { get; set; }
+        public int idAbono { get; set; }
+        public int idMovimiento { get; set; }
+        public int valorAbono { get; set; }
+        public int restante { get; set; }
     
-        public virtual devolucion devolucion { get; set; }
-        public virtual producto producto { get; set; }
+        public virtual movimiento movimiento { get; set; }
     }
 }

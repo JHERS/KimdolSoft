@@ -5,20 +5,90 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="kimdolsoftModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="abono">
+          <Key>
+            <PropertyRef Name="idAbono" />
+          </Key>
+          <Property Name="idAbono" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMovimiento" Type="int" Nullable="false" />
+          <Property Name="valorAbono" Type="int" Nullable="false" />
+          <Property Name="restante" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
         <EntityType Name="cliente">
           <Key>
             <PropertyRef Name="idCliente" />
           </Key>
-          <Property Name="idCliente" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="tipoDocumento" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="primerNombre" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="segundoNombre" Type="nvarchar" MaxLength="20" />
           <Property Name="primerApellido" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="segundoApellido" Type="nvarchar" MaxLength="20" />
-          <Property Name="telefono" Type="nvarchar" MaxLength="7" Nullable="false" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="7" />
           <Property Name="celular" Type="nvarchar" MaxLength="12" />
           <Property Name="email" Type="nvarchar" MaxLength="30" />
           <Property Name="direccion" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="barrio" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="estado" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="compra">
@@ -26,36 +96,11 @@
             <PropertyRef Name="idCompra" />
           </Key>
           <Property Name="idCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fechaCompra" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="fechaCompra" Type="datetime" Nullable="false" />
           <Property Name="descuento" Type="int" />
           <Property Name="idProveedor" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="valorCompra" Type="int" Nullable="false" />
           <Property Name="estado" Type="nvarchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <EntityType Name="contacto">
-          <Key>
-            <PropertyRef Name="idContacto" />
-          </Key>
-          <Property Name="idContacto" Type="nvarchar" MaxLength="12" Nullable="false" />
-          <Property Name="tipoDocumento" Type="nchar" MaxLength="3" Nullable="false" />
-          <Property Name="primerNombre" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="segundoNombre" Type="nvarchar" MaxLength="20" />
-          <Property Name="primerApellido" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="segundoApellido" Type="nvarchar" MaxLength="20" />
-          <Property Name="celular" Type="nvarchar" MaxLength="12" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="40" />
-          <Property Name="idProveedor" Type="nvarchar" MaxLength="20" Nullable="false" />
-        </EntityType>
-        <EntityType Name="cuentausuario">
-          <Key>
-            <PropertyRef Name="idCuentaUsuario" />
-          </Key>
-          <Property Name="idCuentaUsuario" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombreUsuario" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="contrasena" Type="nvarchar" MaxLength="200" />
-          <Property Name="preguntaSeguridad" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="respuestaSeguridad" Type="nvarchar" MaxLength="45" Nullable="false" />
-          <Property Name="idEmpleado" Type="nvarchar" MaxLength="12" Nullable="false" />
         </EntityType>
         <EntityType Name="detallecompra">
           <Key>
@@ -64,7 +109,7 @@
           <Property Name="idDetalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idProducto" Type="int" Nullable="false" />
           <Property Name="idCompra" Type="int" Nullable="false" />
-          <Property Name="cantidad" Type="smallint" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="valorUnitario" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="detalledevolucion">
@@ -75,8 +120,8 @@
           <Property Name="idProducto" Type="int" Nullable="false" />
           <Property Name="idDevolucion" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="cantidadADevolver" Type="smallint" Nullable="false" />
-          <Property Name="cantidadPendiente" Type="smallint" Nullable="false" />
+          <Property Name="cantidadADevolver" Type="int" Nullable="false" />
+          <Property Name="cantidadPendiente" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="detallemovimiento">
           <Key>
@@ -85,7 +130,7 @@
           <Property Name="idDetalle" Type="int" Nullable="false" />
           <Property Name="idProducto" Type="int" Nullable="false" />
           <Property Name="idMovimiento" Type="int" Nullable="false" />
-          <Property Name="cantidad" Type="smallint" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
           <Property Name="valorUnitaro" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="devolucion">
@@ -93,7 +138,7 @@
             <PropertyRef Name="idDevolucion" />
           </Key>
           <Property Name="idDevolucion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fechaDevolucion" Type="datetime2" Precision="0" Nullable="false" />
+          <Property Name="fechaDevolucion" Type="datetime" Nullable="false" />
           <Property Name="idProveedor" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="estado" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
@@ -128,7 +173,7 @@
           <Key>
             <PropertyRef Name="idMarca" />
           </Key>
-          <Property Name="idMarca" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMarca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -137,12 +182,12 @@
             <PropertyRef Name="idMovimiento" />
           </Key>
           <Property Name="idMovimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fechaVenta" Type="datetime2" Precision="0" Nullable="false" />
-          <Property Name="fechaEntrega" Type="datetime2" Precision="0" />
+          <Property Name="fechaVenta" Type="datetime" Nullable="false" />
+          <Property Name="fechaEntrega" Type="datetime" />
           <Property Name="descuento" Type="int" />
-          <Property Name="idCliente" Type="nvarchar" MaxLength="20" />
+          <Property Name="idCliente" Type="int" />
           <Property Name="idEmpleado" Type="nvarchar" MaxLength="12" Nullable="false" />
-          <Property Name="idTipoMovimiento" Type="smallint" Nullable="false" />
+          <Property Name="idTipoMovimiento" Type="int" Nullable="false" />
           <Property Name="valorTotal" Type="int" Nullable="false" />
           <Property Name="estado" Type="nvarchar" MaxLength="12" Nullable="false" />
         </EntityType>
@@ -150,7 +195,7 @@
           <Key>
             <PropertyRef Name="idPresentacion" />
           </Key>
-          <Property Name="idPresentacion" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPresentacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -162,10 +207,10 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="valor" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="100" />
-          <Property Name="idPresentacion" Type="smallint" Nullable="false" />
-          <Property Name="idTipoProducto" Type="smallint" Nullable="false" />
-          <Property Name="idMarca" Type="smallint" Nullable="false" />
-          <Property Name="idUnidad" Type="smallint" Nullable="false" />
+          <Property Name="idPresentacion" Type="int" Nullable="false" />
+          <Property Name="idTipoProducto" Type="int" Nullable="false" />
+          <Property Name="idMarca" Type="int" Nullable="false" />
+          <Property Name="idUnidad" Type="int" Nullable="false" />
           <Property Name="estado" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="proveedor">
@@ -175,9 +220,12 @@
           <Property Name="idProveedor" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="tipoDocumento" Type="nchar" MaxLength="3" Nullable="false" />
           <Property Name="empresa" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="direccionEmpresa" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="direccionEmpresa" Type="nvarchar" MaxLength="30" />
           <Property Name="emailEmpresa" Type="nvarchar" MaxLength="40" />
           <Property Name="telefonoEmpresa" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="nombreVendedor" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="apellidoVendedor" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="telefonoVendedor" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="estado" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -194,7 +242,7 @@
           <Key>
             <PropertyRef Name="idTipoMovimiento" />
           </Key>
-          <Property Name="idTipoMovimiento" Type="smallint" Nullable="false" />
+          <Property Name="idTipoMovimiento" Type="int" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="descripción" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -202,7 +250,7 @@
           <Key>
             <PropertyRef Name="idTipoProducto" />
           </Key>
-          <Property Name="idTipoProducto" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -210,7 +258,7 @@
           <Key>
             <PropertyRef Name="idUnidad" />
           </Key>
-          <Property Name="idUnidad" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUnidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -223,30 +271,6 @@
             </Principal>
             <Dependent Role="compra">
               <PropertyRef Name="idProveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="contacto$fk_contacto_Proveedor1">
-          <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
-          <End Role="contacto" Type="Self.contacto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="proveedor">
-              <PropertyRef Name="idProveedor" />
-            </Principal>
-            <Dependent Role="contacto">
-              <PropertyRef Name="idProveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="cuentausuario$fk_Empleado_Cuenta_Usuario">
-          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
-          <End Role="cuentausuario" Type="Self.cuentausuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="empleado">
-              <PropertyRef Name="idEmpleado" />
-            </Principal>
-            <Dependent Role="cuentausuario">
-              <PropertyRef Name="idEmpleado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -346,6 +370,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_abono_movimiento">
+          <End Role="movimiento" Type="Self.movimiento" Multiplicity="1" />
+          <End Role="abono" Type="Self.abono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="movimiento">
+              <PropertyRef Name="idMovimiento" />
+            </Principal>
+            <Dependent Role="abono">
+              <PropertyRef Name="idMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_movimiento_cliente">
           <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
           <End Role="movimiento" Type="Self.movimiento" Multiplicity="*" />
@@ -431,10 +523,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="kimdolsoftModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="abono" EntityType="Self.abono" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="compra" EntityType="Self.compra" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="contacto" EntityType="Self.contacto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="cuentausuario" EntityType="Self.cuentausuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="detallecompra" EntityType="Self.detallecompra" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="detalledevolucion" EntityType="Self.detalledevolucion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="detallemovimiento" EntityType="Self.detallemovimiento" Schema="dbo" store:Type="Tables" />
@@ -453,14 +550,6 @@
           <AssociationSet Name="compra$fk_Compra_Proveedor1" Association="Self.compra$fk_Compra_Proveedor1">
             <End Role="proveedor" EntitySet="proveedor" />
             <End Role="compra" EntitySet="compra" />
-          </AssociationSet>
-          <AssociationSet Name="contacto$fk_contacto_Proveedor1" Association="Self.contacto$fk_contacto_Proveedor1">
-            <End Role="proveedor" EntitySet="proveedor" />
-            <End Role="contacto" EntitySet="contacto" />
-          </AssociationSet>
-          <AssociationSet Name="cuentausuario$fk_Empleado_Cuenta_Usuario" Association="Self.cuentausuario$fk_Empleado_Cuenta_Usuario">
-            <End Role="empleado" EntitySet="empleado" />
-            <End Role="cuentausuario" EntitySet="cuentausuario" />
           </AssociationSet>
           <AssociationSet Name="detallecompra$fk_Producto_has_Compra_Compra1" Association="Self.detallecompra$fk_Producto_has_Compra_Compra1">
             <End Role="compra" EntitySet="compra" />
@@ -493,6 +582,26 @@
           <AssociationSet Name="existencia$fk_Existencia_Producto1" Association="Self.existencia$fk_Existencia_Producto1">
             <End Role="producto" EntitySet="producto" />
             <End Role="existencia" EntitySet="existencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_abono_movimiento" Association="Self.fk_abono_movimiento">
+            <End Role="movimiento" EntitySet="movimiento" />
+            <End Role="abono" EntitySet="abono" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="fk_movimiento_cliente" Association="Self.fk_movimiento_cliente">
             <End Role="cliente" EntitySet="cliente" />
@@ -528,20 +637,89 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="kimdolsoftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="abono">
+          <Key>
+            <PropertyRef Name="idAbono" />
+          </Key>
+          <Property Name="idAbono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMovimiento" Type="Int32" Nullable="false" />
+          <Property Name="valorAbono" Type="Int32" Nullable="false" />
+          <Property Name="restante" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="movimiento" Relationship="Self.fk_abono_movimiento" FromRole="abono" ToRole="movimiento" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
         <EntityType Name="cliente">
           <Key>
             <PropertyRef Name="idCliente" />
           </Key>
-          <Property Name="idCliente" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="tipoDocumento" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="primerNombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="segundoNombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="primerApellido" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="segundoApellido" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="telefono" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
           <Property Name="celular" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="direccion" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="barrio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="movimiento" Relationship="Self.fk_movimiento_cliente" FromRole="cliente" ToRole="movimiento" />
         </EntityType>
@@ -550,40 +728,13 @@
             <PropertyRef Name="idCompra" />
           </Key>
           <Property Name="idCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fechaCompra" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaCompra" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="descuento" Type="Int32" />
           <Property Name="idProveedor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="valorCompra" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="proveedor" Relationship="Self.compra_fk_Compra_Proveedor1" FromRole="compra" ToRole="proveedor" />
           <NavigationProperty Name="detallecompra" Relationship="Self.detallecompra_fk_Producto_has_Compra_Compra1" FromRole="compra" ToRole="detallecompra" />
-        </EntityType>
-        <EntityType Name="contacto">
-          <Key>
-            <PropertyRef Name="idContacto" />
-          </Key>
-          <Property Name="idContacto" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="tipoDocumento" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="primerNombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="segundoNombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="primerApellido" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="segundoApellido" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="celular" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
-          <Property Name="idProveedor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="proveedor" Relationship="Self.contacto_fk_contacto_Proveedor1" FromRole="contacto" ToRole="proveedor" />
-        </EntityType>
-        <EntityType Name="cuentausuario">
-          <Key>
-            <PropertyRef Name="idCuentaUsuario" />
-          </Key>
-          <Property Name="idCuentaUsuario" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombreUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="contrasena" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="preguntaSeguridad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="respuestaSeguridad" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="idEmpleado" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="empleado" Relationship="Self.cuentausuario_fk_Empleado_Cuenta_Usuario" FromRole="cuentausuario" ToRole="empleado" />
         </EntityType>
         <EntityType Name="detallecompra">
           <Key>
@@ -592,7 +743,7 @@
           <Property Name="idDetalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idProducto" Type="Int32" Nullable="false" />
           <Property Name="idCompra" Type="Int32" Nullable="false" />
-          <Property Name="cantidad" Type="Int16" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="valorUnitario" Type="Int32" Nullable="false" />
           <NavigationProperty Name="compra" Relationship="Self.detallecompra_fk_Producto_has_Compra_Compra1" FromRole="detallecompra" ToRole="compra" />
           <NavigationProperty Name="producto" Relationship="Self.detallecompra_fk_Producto_has_Compra_Producto1" FromRole="detallecompra" ToRole="producto" />
@@ -605,8 +756,8 @@
           <Property Name="idProducto" Type="Int32" Nullable="false" />
           <Property Name="idDevolucion" Type="Int32" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="cantidadADevolver" Type="Int16" Nullable="false" />
-          <Property Name="cantidadPendiente" Type="Int16" Nullable="false" />
+          <Property Name="cantidadADevolver" Type="Int32" Nullable="false" />
+          <Property Name="cantidadPendiente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="devolucion" Relationship="Self.detalledevolucion_fk_detalle_devolucion_devolucion" FromRole="detalledevolucion" ToRole="devolucion" />
           <NavigationProperty Name="producto" Relationship="Self.detalledevolucion_fk_Producto_has_Devolución_Producto1" FromRole="detalledevolucion" ToRole="producto" />
         </EntityType>
@@ -617,7 +768,7 @@
           <Property Name="idDetalle" Type="Int32" Nullable="false" />
           <Property Name="idProducto" Type="Int32" Nullable="false" />
           <Property Name="idMovimiento" Type="Int32" Nullable="false" />
-          <Property Name="cantidad" Type="Int16" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="valorUnitaro" Type="Int32" Nullable="false" />
           <NavigationProperty Name="producto" Relationship="Self.detallemovimiento_fk_Producto_has_Venta_Producto1" FromRole="detallemovimiento" ToRole="producto" />
           <NavigationProperty Name="movimiento" Relationship="Self.detallemovimiento_fk_Producto_has_Venta_Venta1" FromRole="detallemovimiento" ToRole="movimiento" />
@@ -627,7 +778,7 @@
             <PropertyRef Name="idDevolucion" />
           </Key>
           <Property Name="idDevolucion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fechaDevolucion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaDevolucion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="idProveedor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="detalledevolucion" Relationship="Self.detalledevolucion_fk_detalle_devolucion_devolucion" FromRole="devolucion" ToRole="detalledevolucion" />
@@ -649,7 +800,6 @@
           <Property Name="telefono" Type="String" MaxLength="7" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="celular" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="cuentausuario" Relationship="Self.cuentausuario_fk_Empleado_Cuenta_Usuario" FromRole="empleado" ToRole="cuentausuario" />
           <NavigationProperty Name="movimiento" Relationship="Self.movimiento_fk_Venta_Empleado1" FromRole="empleado" ToRole="movimiento" />
         </EntityType>
         <EntityType Name="existencia">
@@ -667,7 +817,7 @@
           <Key>
             <PropertyRef Name="idMarca" />
           </Key>
-          <Property Name="idMarca" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="producto" Relationship="Self.producto_fk_Producto_Marca1" FromRole="marca" ToRole="producto" />
@@ -677,14 +827,15 @@
             <PropertyRef Name="idMovimiento" />
           </Key>
           <Property Name="idMovimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fechaVenta" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="fechaEntrega" Type="DateTime" Precision="0" />
+          <Property Name="fechaVenta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaEntrega" Type="DateTime" Precision="3" />
           <Property Name="descuento" Type="Int32" />
-          <Property Name="idCliente" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="idCliente" Type="Int32" />
           <Property Name="idEmpleado" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="idTipoMovimiento" Type="Int16" Nullable="false" />
+          <Property Name="idTipoMovimiento" Type="Int32" Nullable="false" />
           <Property Name="valorTotal" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="abono" Relationship="Self.fk_abono_movimiento" FromRole="movimiento" ToRole="abono" />
           <NavigationProperty Name="cliente" Relationship="Self.fk_movimiento_cliente" FromRole="movimiento" ToRole="cliente" />
           <NavigationProperty Name="detallemovimiento" Relationship="Self.detallemovimiento_fk_Producto_has_Venta_Venta1" FromRole="movimiento" ToRole="detallemovimiento" />
           <NavigationProperty Name="empleado" Relationship="Self.movimiento_fk_Venta_Empleado1" FromRole="movimiento" ToRole="empleado" />
@@ -694,7 +845,7 @@
           <Key>
             <PropertyRef Name="idPresentacion" />
           </Key>
-          <Property Name="idPresentacion" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPresentacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="producto" Relationship="Self.producto_fk_producto_presentacion" FromRole="presentacion" ToRole="producto" />
@@ -707,10 +858,10 @@
           <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="valor" Type="Int32" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="idPresentacion" Type="Int16" Nullable="false" />
-          <Property Name="idTipoProducto" Type="Int16" Nullable="false" />
-          <Property Name="idMarca" Type="Int16" Nullable="false" />
-          <Property Name="idUnidad" Type="Int16" Nullable="false" />
+          <Property Name="idPresentacion" Type="Int32" Nullable="false" />
+          <Property Name="idTipoProducto" Type="Int32" Nullable="false" />
+          <Property Name="idMarca" Type="Int32" Nullable="false" />
+          <Property Name="idUnidad" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="detallecompra" Relationship="Self.detallecompra_fk_Producto_has_Compra_Producto1" FromRole="producto" ToRole="detallecompra" />
           <NavigationProperty Name="detalledevolucion" Relationship="Self.detalledevolucion_fk_Producto_has_Devolución_Producto1" FromRole="producto" ToRole="detalledevolucion" />
@@ -728,12 +879,14 @@
           <Property Name="idProveedor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="tipoDocumento" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="empresa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="direccionEmpresa" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="direccionEmpresa" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="emailEmpresa" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="telefonoEmpresa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nombreVendedor" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="apellidoVendedor" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefonoVendedor" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="compra" Relationship="Self.compra_fk_Compra_Proveedor1" FromRole="proveedor" ToRole="compra" />
-          <NavigationProperty Name="contacto" Relationship="Self.contacto_fk_contacto_Proveedor1" FromRole="proveedor" ToRole="contacto" />
           <NavigationProperty Name="devolucion" Relationship="Self.devolucion_fk_devolucion_Proveedor" FromRole="proveedor" ToRole="devolucion" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -750,7 +903,7 @@
           <Key>
             <PropertyRef Name="idTipoMovimiento" />
           </Key>
-          <Property Name="idTipoMovimiento" Type="Int16" Nullable="false" />
+          <Property Name="idTipoMovimiento" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripción" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="movimiento" Relationship="Self.movimiento_fk_movimiento_Tipo_Movimiento1" FromRole="tipomovimiento" ToRole="movimiento" />
@@ -759,7 +912,7 @@
           <Key>
             <PropertyRef Name="idTipoProducto" />
           </Key>
-          <Property Name="idTipoProducto" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="producto" Relationship="Self.producto_fk_Producto_Tipo_producto1" FromRole="tipoproducto" ToRole="producto" />
@@ -768,11 +921,51 @@
           <Key>
             <PropertyRef Name="idUnidad" />
           </Key>
-          <Property Name="idUnidad" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUnidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="producto" Relationship="Self.producto_fk_Producto_Unidad1" FromRole="unidad" ToRole="producto" />
         </EntityType>
+        <Association Name="fk_abono_movimiento">
+          <End Role="movimiento" Type="Self.movimiento" Multiplicity="1" />
+          <End Role="abono" Type="Self.abono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="movimiento">
+              <PropertyRef Name="idMovimiento" />
+            </Principal>
+            <Dependent Role="abono">
+              <PropertyRef Name="idMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_movimiento_cliente">
           <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
           <End Role="movimiento" Type="Self.movimiento" Multiplicity="*" />
@@ -806,30 +999,6 @@
             </Principal>
             <Dependent Role="detallecompra">
               <PropertyRef Name="idCompra" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="contacto_fk_contacto_Proveedor1">
-          <End Role="proveedor" Type="Self.proveedor" Multiplicity="1" />
-          <End Role="contacto" Type="Self.contacto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="proveedor">
-              <PropertyRef Name="idProveedor" />
-            </Principal>
-            <Dependent Role="contacto">
-              <PropertyRef Name="idProveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="cuentausuario_fk_Empleado_Cuenta_Usuario">
-          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
-          <End Role="cuentausuario" Type="Self.cuentausuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="empleado">
-              <PropertyRef Name="idEmpleado" />
-            </Principal>
-            <Dependent Role="cuentausuario">
-              <PropertyRef Name="idEmpleado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -989,11 +1158,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="kimdolsoftEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="kimdolsoftEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="abono" EntityType="Self.abono" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="cliente" EntityType="Self.cliente" />
           <EntitySet Name="compra" EntityType="Self.compra" />
-          <EntitySet Name="contacto" EntityType="Self.contacto" />
-          <EntitySet Name="cuentausuario" EntityType="Self.cuentausuario" />
           <EntitySet Name="detallecompra" EntityType="Self.detallecompra" />
           <EntitySet Name="detalledevolucion" EntityType="Self.detalledevolucion" />
           <EntitySet Name="detallemovimiento" EntityType="Self.detallemovimiento" />
@@ -1009,6 +1186,18 @@
           <EntitySet Name="tipomovimiento" EntityType="Self.tipomovimiento" />
           <EntitySet Name="tipoproducto" EntityType="Self.tipoproducto" />
           <EntitySet Name="unidad" EntityType="Self.unidad" />
+          <AssociationSet Name="fk_abono_movimiento" Association="Self.fk_abono_movimiento">
+            <End Role="movimiento" EntitySet="movimiento" />
+            <End Role="abono" EntitySet="abono" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
           <AssociationSet Name="fk_movimiento_cliente" Association="Self.fk_movimiento_cliente">
             <End Role="cliente" EntitySet="cliente" />
             <End Role="movimiento" EntitySet="movimiento" />
@@ -1020,14 +1209,6 @@
           <AssociationSet Name="detallecompra_fk_Producto_has_Compra_Compra1" Association="Self.detallecompra_fk_Producto_has_Compra_Compra1">
             <End Role="compra" EntitySet="compra" />
             <End Role="detallecompra" EntitySet="detallecompra" />
-          </AssociationSet>
-          <AssociationSet Name="contacto_fk_contacto_Proveedor1" Association="Self.contacto_fk_contacto_Proveedor1">
-            <End Role="proveedor" EntitySet="proveedor" />
-            <End Role="contacto" EntitySet="contacto" />
-          </AssociationSet>
-          <AssociationSet Name="cuentausuario_fk_Empleado_Cuenta_Usuario" Association="Self.cuentausuario_fk_Empleado_Cuenta_Usuario">
-            <End Role="empleado" EntitySet="empleado" />
-            <End Role="cuentausuario" EntitySet="cuentausuario" />
           </AssociationSet>
           <AssociationSet Name="detallecompra_fk_Producto_has_Compra_Producto1" Association="Self.detallecompra_fk_Producto_has_Compra_Producto1">
             <End Role="producto" EntitySet="producto" />
@@ -1081,18 +1262,86 @@
             <End Role="unidad" EntitySet="unidad" />
             <End Role="producto" EntitySet="producto" />
           </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="kimdolsoftModelStoreContainer" CdmEntityContainer="kimdolsoftEntities">
+        <EntityContainerMapping StorageEntityContainer="kimdolsoftModelStoreContainer" CdmEntityContainer="kimdolsoftEntities2">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="kimdolsoftModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="abono">
+            <EntityTypeMapping TypeName="kimdolsoftModel.abono">
+              <MappingFragment StoreEntitySet="abono">
+                <ScalarProperty Name="idAbono" ColumnName="idAbono" />
+                <ScalarProperty Name="idMovimiento" ColumnName="idMovimiento" />
+                <ScalarProperty Name="valorAbono" ColumnName="valorAbono" />
+                <ScalarProperty Name="restante" ColumnName="restante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="kimdolsoftModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="kimdolsoftModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="kimdolsoftModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="kimdolsoftModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="cliente">
             <EntityTypeMapping TypeName="kimdolsoftModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-                <ScalarProperty Name="tipoDocumento" ColumnName="tipoDocumento" />
                 <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
                 <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
                 <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
@@ -1101,6 +1350,7 @@
                 <ScalarProperty Name="celular" ColumnName="celular" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="barrio" ColumnName="barrio" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1114,33 +1364,6 @@
                 <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
                 <ScalarProperty Name="valorCompra" ColumnName="valorCompra" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="contacto">
-            <EntityTypeMapping TypeName="kimdolsoftModel.contacto">
-              <MappingFragment StoreEntitySet="contacto">
-                <ScalarProperty Name="idContacto" ColumnName="idContacto" />
-                <ScalarProperty Name="tipoDocumento" ColumnName="tipoDocumento" />
-                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
-                <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
-                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
-                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
-                <ScalarProperty Name="celular" ColumnName="celular" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="idProveedor" ColumnName="idProveedor" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="cuentausuario">
-            <EntityTypeMapping TypeName="kimdolsoftModel.cuentausuario">
-              <MappingFragment StoreEntitySet="cuentausuario">
-                <ScalarProperty Name="idCuentaUsuario" ColumnName="idCuentaUsuario" />
-                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
-                <ScalarProperty Name="contrasena" ColumnName="contrasena" />
-                <ScalarProperty Name="preguntaSeguridad" ColumnName="preguntaSeguridad" />
-                <ScalarProperty Name="respuestaSeguridad" ColumnName="respuestaSeguridad" />
-                <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1274,6 +1497,9 @@
                 <ScalarProperty Name="direccionEmpresa" ColumnName="direccionEmpresa" />
                 <ScalarProperty Name="emailEmpresa" ColumnName="emailEmpresa" />
                 <ScalarProperty Name="telefonoEmpresa" ColumnName="telefonoEmpresa" />
+                <ScalarProperty Name="nombreVendedor" ColumnName="nombreVendedor" />
+                <ScalarProperty Name="apellidoVendedor" ColumnName="apellidoVendedor" />
+                <ScalarProperty Name="telefonoVendedor" ColumnName="telefonoVendedor" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1316,6 +1542,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="kimdolsoftModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

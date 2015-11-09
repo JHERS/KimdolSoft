@@ -20,7 +20,7 @@ namespace KimdolSoft.Models
             this.movimiento = new HashSet<movimiento>();
         }
     
-        public short idTipoMovimiento { get; set; }
+        public int idTipoMovimiento { get; set; }
         public string nombre { get; set; }
         public string descripción { get; set; }
     

@@ -12,16 +12,11 @@ namespace KimdolSoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class detalledevolucion
+    public partial class C__MigrationHistory
     {
-        public int idDetalle { get; set; }
-        public int idProducto { get; set; }
-        public int idDevolucion { get; set; }
-        public string descripcion { get; set; }
-        public int cantidadADevolver { get; set; }
-        public int cantidadPendiente { get; set; }
-    
-        public virtual devolucion devolucion { get; set; }
-        public virtual producto producto { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

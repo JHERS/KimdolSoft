@@ -27,10 +27,10 @@ namespace KimdolSoft.Models
         public string nombre { get; set; }
         public int valor { get; set; }
         public string descripcion { get; set; }
-        public short idPresentacion { get; set; }
-        public short idTipoProducto { get; set; }
-        public short idMarca { get; set; }
-        public short idUnidad { get; set; }
+        public int idPresentacion { get; set; }
+        public int idTipoProducto { get; set; }
+        public int idMarca { get; set; }
+        public int idUnidad { get; set; }
         public string estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

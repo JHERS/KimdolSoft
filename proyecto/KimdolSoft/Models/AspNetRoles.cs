@@ -12,28 +12,18 @@ namespace KimdolSoft.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class empleado
+    public partial class AspNetRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public empleado()
+        public AspNetRoles()
         {
-            this.movimiento = new HashSet<movimiento>();
+            this.AspNetUsers = new HashSet<AspNetUsers>();
         }
     
-        public string idEmpleado { get; set; }
-        public string tipoDocumento { get; set; }
-        public string primerNombre { get; set; }
-        public string segundoNombre { get; set; }
-        public string primerApellido { get; set; }
-        public string segundoApellido { get; set; }
-        public string rol { get; set; }
-        public string direccion { get; set; }
-        public string email { get; set; }
-        public string telefono { get; set; }
-        public string celular { get; set; }
-        public string estado { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<movimiento> movimiento { get; set; }
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

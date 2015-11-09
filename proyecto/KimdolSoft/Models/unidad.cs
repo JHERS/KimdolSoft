@@ -20,7 +20,7 @@ namespace KimdolSoft.Models
             this.producto = new HashSet<producto>();
         }
     
-        public short idUnidad { get; set; }
+        public int idUnidad { get; set; }
         public string nombre { get; set; }
         public string descripcion { get; set; }
     
