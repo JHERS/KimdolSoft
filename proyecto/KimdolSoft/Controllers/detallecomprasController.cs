@@ -39,8 +39,10 @@ namespace KimdolSoft.Controllers
         // GET: detallecompras/Create
         public ActionResult Create()
         {
-            ViewBag.idCompra = new SelectList(db.compra, "idCompra", "idProveedor");
-            ViewBag.idProducto = new SelectList(db.producto, "idProducto", "nombre");
+            ViewData["IdProductoSeleccionado"] = String.Empty;
+            ViewData["IdProveedorSeleccionado"] = String.Empty;
+            ViewBag.idProveedor = db.proveedor.ToList();
+            ViewBag.idProducto = db.producto.ToList();
             return View();
         }
 
@@ -49,18 +51,23 @@ namespace KimdolSoft.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idDetalle,idProducto,idCompra,cantidad,valorUnitario")] detallecompra detallecompra)
+        public ActionResult Create(Compra_Detalle compraDetalle)
         {
             if (ModelState.IsValid)
             {
-                db.detallecompra.Add(detallecompra);
+                db.compra.Add(compraDetalle.compra);
+                db.SaveChanges();
+                compraDetalle.dtcompra.idCompra = compraDetalle.compra.idCompra;
+                db.detallecompra.Add(compraDetalle.dtcompra);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCompra = new SelectList(db.compra, "idCompra", "idProveedor", detallecompra.idCompra);
-            ViewBag.idProducto = new SelectList(db.producto, "idProducto", "nombre", detallecompra.idProducto);
-            return View(detallecompra);
+            ViewData["IdProductoSeleccionado"] = compraDetalle.dtcompra.idProducto;
+            ViewData["IdProveedorSeleccionado"] = compraDetalle.compra.idProveedor;
+            ViewBag.idProveedor = db.proveedor.ToList();
+            ViewBag.idProducto = db.producto.ToList();
+            return View(compraDetalle);
         }
 
         // GET: detallecompras/Edit/5
