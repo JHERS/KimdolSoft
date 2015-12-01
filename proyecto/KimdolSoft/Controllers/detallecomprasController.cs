@@ -39,6 +39,8 @@ namespace KimdolSoft.Controllers
         // GET: detallecompras/Create
         public ActionResult Create()
         {
+            var Mensaje = TempData["Message"];
+            ViewBag.mensaje = Mensaje;
             ViewData["IdProductoSeleccionado"] = String.Empty;
             ViewData["IdProveedorSeleccionado"] = String.Empty;
             ViewBag.idProveedor = db.proveedor.ToList();
@@ -60,6 +62,7 @@ namespace KimdolSoft.Controllers
                 compraDetalle.dtcompra.idCompra = compraDetalle.compra.idCompra;
                 db.detallecompra.Add(compraDetalle.dtcompra);
                 db.SaveChanges();
+                TempData["Message"] = "Registro Exítoso";
                 return RedirectToAction("Index");
             }
 
@@ -82,9 +85,14 @@ namespace KimdolSoft.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idCompra = new SelectList(db.compra, "idCompra", "idProveedor", detallecompra.idCompra);
-            ViewBag.idProducto = new SelectList(db.producto, "idProducto", "nombre", detallecompra.idProducto);
-            return View(detallecompra);
+            ViewData["IdProductoSeleccionado"] = String.Empty;
+            ViewData["IdProveedorSeleccionado"] = String.Empty;
+            ViewBag.idProveedor = db.proveedor.ToList();
+            ViewBag.idProducto = db.producto.ToList();
+
+            
+
+            return View( new Compra_Detalle() { dtcompra = detallecompra, compra = detallecompra.compra });
         }
 
         // POST: detallecompras/Edit/5
@@ -129,6 +137,25 @@ namespace KimdolSoft.Controllers
             db.detallecompra.Remove(detallecompra);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public ActionResult ObtenerPrecio(string id)
+        {
+            if (String.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("El código del producto no puede estar vacio");
+            }
+
+            int idProducto = int.Parse(id);
+            var Producto = db.producto.Where(x=> x.idProducto == idProducto).FirstOrDefault();
+
+            if (Producto == null)
+            {
+                throw new ArgumentNullException("El producto no existe");
+            }
+
+            return Json(Producto.valor, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

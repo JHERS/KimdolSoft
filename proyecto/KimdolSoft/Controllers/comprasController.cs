@@ -39,6 +39,8 @@ namespace KimdolSoft.Controllers
         // GET: compras/Create
         public ActionResult Create()
         {
+            var Mensaje = TempData["Message"];
+            ViewBag.mensaje = Mensaje;
             ViewData["IdProveedorSeleccionado"] = String.Empty;
             ViewBag.idProveedor = db.proveedor.ToList();
             return View();

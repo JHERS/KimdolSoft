@@ -8,9 +8,6 @@ namespace KimdolSoft.Models
 {
     public class ComprasMetaData
     {
-        [Display(Name = "* ID Compra: ")]
-        [Required]
-        public int idCompra { get; set; }
 
         [Display(Name = " * Proveedor")]
         [Required(ErrorMessage = "Seleccione una ópción")]
